@@ -1,4 +1,6 @@
 # ExpNo:10 Implementation of Classical Planning Algorithm
+# Name: SANJEEV R
+# Register Number: 212224060235
 # Algorithm or Steps Involved:
 <ol>
   <li>Define the initial state</li>
@@ -46,3 +48,61 @@ print(plan)
 
 # Please Prepare Solution or Definition For the method find_plan(initial_state, goal_state, actions)
 <h3>You Can use any of the searching Strategies for planning and executing a sequence of actions.<br> You can also look in to the Code given in the Repository.</h3>
+
+# Program:
+```
+class ClassicalPlanning:
+    def _init_(self):
+        self.initial_state = None
+        self.goal_state = None
+        self.actions = []
+
+    def define_initial_state(self, state):
+        self.initial_state = state
+
+    def define_goal_state(self, state):
+        self.goal_state = state
+
+    def define_actions(self, actions):
+        self.actions = actions
+
+    def is_goal_reached(self, state):
+        return state == self.goal_state
+
+    def plan(self):
+        # A simple planner that assumes actions are sequential and valid
+        current_state = self.initial_state
+        plan = []
+        for action in self.actions:
+            plan.append(action['name'])
+            current_state = action['result']
+            if self.is_goal_reached(current_state):
+                break
+        return plan
+
+
+# Define an example scenario
+initial_state = {'location': 'A'}
+goal_state = {'location': 'D'}
+actions = [
+    {'name': 'go to B', 'result': {'location': 'B'}},
+    {'name': 'go to C', 'result': {'location': 'C'}},
+    {'name': 'go to D', 'result': {'location': 'D'}}
+]
+
+# Create the planner instance
+planner = ClassicalPlanning()
+planner.define_initial_state(initial_state)
+planner.define_goal_state(goal_state)
+planner.define_actions(actions)
+
+# Plan to reach the goal
+plan = planner.plan()
+print(plan)
+```
+
+# Output:
+['go to B', 'go to C', 'go to D']
+
+# Result: 
+Thus, the classical planning Algorithm has been successfully implemented.
